@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                    http://www.springframework.org/schema/security 
+                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <http use-expressions="true">
+        <session-management session-fixation-protection="migrateSession" />
+
+        <intercept-url pattern="/login" access="permitAll()" requires-channel="https" />
+        <intercept-url pattern="/loginfailed" access="permitAll()" requires-channel="https" />
+        <intercept-url pattern="/processlogin" access="permitAll()" requires-channel="https" />
+        <intercept-url pattern="/logout" access="permitAll()" requires-channel="https" />
+        <intercept-url pattern="/restricted" access="permitAll()" requires-channel="https" />
+        <intercept-url pattern="/denied" access="hasRole('ROLE_USER')" requires-channel="https" />
+        <intercept-url pattern="/resources/**" access="permitAll()" requires-channel="https" />
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" requires-channel="https" />
+        <intercept-url pattern="/" access="permitAll()" requires-channel="https" />
+        <intercept-url pattern="/error/**" access="permitAll()" requires-channel="https" />
+        <intercept-url pattern="/signup" access="permitAll()" requires-channel="https" />        
+        <intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" requires-channel="https" />
+
+        <form-login username-parameter="username" password-parameter="password" login-page="/login"
+            login-processing-url="/processlogin" authentication-failure-url="/loginfailed" />
+
+        <logout logout-url="/logout" logout-success-url="/" invalidate-session="true" />
+
+        <access-denied-handler error-page="/error/restricted" />
+
+        <!-- Remember me for 7 days -->
+        <remember-me data-source-ref="dataSource" use-secure-cookie="true" token-validity-seconds="604800" />
+
+    </http>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider ref="authenticationProvider" />
+    </authentication-manager>
+
+    <beans:bean id="authenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <beans:property name="userDetailsService" ref="defaultUserService" />
+        <beans:property name="saltSource" ref="saltSource" />
+        <beans:property name="passwordEncoder" ref="passwordEncoder" />
+    </beans:bean>
+
+</beans:beans>   

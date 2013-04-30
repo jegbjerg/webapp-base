@@ -1,0 +1,8 @@
+*~
+target/
+db/
+log/
+selfsigned.jks
+.settings
+.project
+.classpath

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="error/404" extends="base">
+        <put-attribute name="title" value="error.title_404" />
+        <put-attribute name="body" value="/WEB-INF/views/error/404.jsp" />
+    </definition>
+
+    <definition name="error/restricted" extends="base">
+        <put-attribute name="title" value="error.title_restricted" />
+        <put-attribute name="body" value="/WEB-INF/views/error/restricted.jsp" />
+    </definition>
+
+    <definition name="error/error" extends="base">
+        <put-attribute name="title" value="error.title" />
+        <put-attribute name="body" value="/WEB-INF/views/error/error.jsp" />
+    </definition>
+
+</tiles-definitions>
