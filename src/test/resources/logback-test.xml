@@ -4,13 +4,13 @@
     <property name="application" value="app" />
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${location}/${app}-test.log</file>
+        <file>${location}/${application}-test.log</file>
         <encoder>
             <pattern>%d [%t] %-5p %C{1} - %m%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
             <maxIndex>10</maxIndex>
-            <fileNamePattern>${location}/${app}-test.%i.log</fileNamePattern>
+            <fileNamePattern>${location}/${application}-test.%i.log</fileNamePattern>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
             <maxFileSize>2MB</maxFileSize>
