@@ -24,7 +24,7 @@ be the same as the keystore password.
 2. Edit `keystorePass` property in `tomcat7-plugin` in `pom.xml` to
 reflect the keystore password you just provided.  It defaults to
 artifact id.
-3. Edit the file `src/main/resources/db/V2__Add_admin_user.sql`, and
+3. Edit the file `src/main/resources/db/migration/V2__Add_admin_user.sql`, and
 change the admin user, email and password (default is `admin`).  The
 password must be postfixed with `{1}` (the salt) and hashed.  Use the
 following command: `echo -n <password>{1} | sha256sum`.
