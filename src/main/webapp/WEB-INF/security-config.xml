@@ -20,7 +20,7 @@
         <intercept-url pattern="/" access="permitAll()" requires-channel="https" />
         <intercept-url pattern="/error/**" access="permitAll()" requires-channel="https" />
         <intercept-url pattern="/signup" access="permitAll()" requires-channel="https" />        
-        <intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" requires-channel="https" />
+        <intercept-url pattern="/**" access="denyAll()" requires-channel="https" />
 
         <form-login username-parameter="username" password-parameter="password" login-page="/login"
             login-processing-url="/processlogin" authentication-failure-url="/loginfailed" />
